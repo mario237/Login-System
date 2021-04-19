@@ -174,11 +174,12 @@ function isEmpty() {
 function checkUser() {
     if (isEmpty()) {
         showErrorMessage(true , `All inputs are required`)
-    } else {
+    } 
+    else {
         if (currentUsers != null) {
+            showErrorMessage(false , '')
             currentUsers.forEach((elem) => {
                 if (emailInput.value == elem.email && passwordInput.value == elem.password) {
-                    showErrorMessage(false , '')
                     localStorage.setItem('currentuser', JSON.stringify(elem));
                     emailInput.value = ''; passwordInput.value = '';
                     location.href = 'home.html';
