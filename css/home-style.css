@@ -25,8 +25,8 @@ button {
     padding: 10px 25px;
     border: 1px solid orange;
     border-radius: 5px;
-    outline: none;
     transition: 0.5s;
+    outline: none;
 }
 
 button:hover{
