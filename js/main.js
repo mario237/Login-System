@@ -173,8 +173,7 @@ function isEmpty() {
 
 function checkUser() {
     if (isEmpty()) {
-        errorMessage.innerHTML = `All inputs are required`
-        errorMessage.classList.replace('d-none', 'd-block');
+        showErrorMessage(true , `All inputs are required`)
     } else {
         if (currentUsers != null) {
             currentUsers.forEach((elem) => {
