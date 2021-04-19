@@ -10,6 +10,13 @@
     </head>
     <body>
 
+        <header>
+           <div class="content">
+            <h1>Smart Login System</h1>
+            <button onclick="signOut()">Logout</button>
+           </div>
+        </header>
+
         <div class="message">
             <h2>Welcome <span id="currentUsername"></span> <i> &#9829;</i></h2>
             <p>Your Email: <span id="currentEmail"></span></p>
@@ -24,6 +31,11 @@
 
       document.getElementById('currentUsername').innerHTML = `${currentUser.username} `
       document.getElementById('currentEmail').innerHTML = `${currentUser.email} `
+
+    function signOut(){
+        localStorage.removeItem('currentuser');
+        location.href = 'index.html';
+    }
 
     </script>
     </body>
