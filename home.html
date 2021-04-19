@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home Page</title>
+        <link rel="stylesheet" href="css/home-style.css">
+
+    </head>
+    <body>
+
+        <div class="message">
+            <h2>Welcome <span id="currentUsername"></span> <i> &#9829;</i></h2>
+            <p>Your Email: <span id="currentEmail"></span></p>
+        </div>
+
+
+        <script>
+     
+    
+
+      var currentUser = JSON.parse(localStorage.getItem('currentuser'));
+
+      document.getElementById('currentUsername').innerHTML = `${currentUser.username} `
+      document.getElementById('currentEmail').innerHTML = `${currentUser.email} `
+
+    </script>
+    </body>
+</html>
