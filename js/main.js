@@ -1,7 +1,5 @@
 /* start sign up part */
 
-//disable browser forward and back history
-window.history.forward();
 
 //inputs feilds
 const usernameInput = document.getElementById('username');
@@ -101,12 +99,12 @@ function validateUserData() {
     if (!validateUsername() | !validateEmailAddress() | !validatePassword()) {
         errorMessage.classList.replace('d-none', 'd-block');
     } else {
-       if(checkUserSignUp()){
-        showErrorMessage(true , 'user already exist')
-       }else{
-        showErrorMessage(false , '')
-        uploadUserData()
-       }
+        if (checkUserSignUp()) {
+            showErrorMessage(true, 'user already exist')
+        } else {
+            showErrorMessage(false, '')
+            uploadUserData()
+        }
     }
 
 
@@ -136,21 +134,21 @@ function clearInputsFeilds() {
     passwordInput.value = ''
 }
 
-function checkUserSignUp(){
+function checkUserSignUp() {
     var state = false;
-    listOfUsers.forEach((elem)=>{
-        if(emailInput.value == elem.email | usernameInput.value == elem.username)
+    listOfUsers.forEach((elem) => {
+        if (emailInput.value == elem.email | usernameInput.value == elem.username)
             state = true;
     })
 
     return state
 }
 
-function showErrorMessage(state , message){
-    if(state){
+function showErrorMessage(state, message) {
+    if (state) {
         errorMessage.style.display = 'block'
         errorMessage.innerHTML = message
-    }else{
+    } else {
         errorMessage.style.display = 'none'
         errorMessage.innerHTML = ``
     }
@@ -172,26 +170,30 @@ function isEmpty() {
 }
 
 function checkUser() {
+
+    var exist = false;
+
     if (isEmpty()) {
-        showErrorMessage(true , `All inputs are required`)
-    } 
+        showErrorMessage(true, `All inputs are required`)
+    }
     else {
         if (currentUsers != null) {
-            showErrorMessage(false , '')
+            showErrorMessage(false, '')
             currentUsers.forEach((elem) => {
                 if (emailInput.value == elem.email && passwordInput.value == elem.password) {
+                    exist = true;
                     localStorage.setItem('currentuser', JSON.stringify(elem));
-                    emailInput.value = ''; passwordInput.value = '';
-                    location.href = 'home.html';
-                } else {
-                   showErrorMessage(true , `user doesn't exist please sign up first !!`)
                 }
             })
-        } else {
-            showErrorMessage(true , `user doesn't exist please sign up first !!`)
         }
     }
 
+    if (exist) {
+        emailInput.value = ''; passwordInput.value = '';
+        location.href = 'home.html';
+    } else {
+        showErrorMessage(true, `user doesn't exist please sign up first !!`)
+    }
 
 }
 
