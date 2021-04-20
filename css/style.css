@@ -62,7 +62,8 @@ a , a:hover{
     text-decoration: none;
 }
 
-.errorMessage{
+.errorMessage , 
+#passwordValidation{
     display: none;
     width: 90%;
     margin: 15px auto;

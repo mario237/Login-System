@@ -9,6 +9,8 @@ const passwordInput = document.getElementById('password');
 //error message when all inputs is empty
 var errorMessage = document.querySelector('.errorMessage');
 
+var passwordValidation = document.getElementById('passwordValidation');
+
 //sign up button
 var signUpBtn = document.getElementById('signUpBtn');
 
@@ -29,7 +31,7 @@ else
 
 function validateUsername() {
 
-    const usernamePattern = /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/
+    const usernamePattern = /^[a-zA-Z0-9._]/
 
     var username = usernameInput.value;
 
@@ -82,9 +84,11 @@ function validatePassword() {
         passwordInput.classList.add('is-invalid');
     } else {
         if (passwordPattern.test(password)) {
+            passwordValidation.style.display = 'none'
             passwordInput.classList.remove('is-invalid')
 
         } else {
+            passwordValidation.style.display = 'block'
             passwordInput.classList.add('is-invalid')
 
         }
