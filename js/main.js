@@ -20,6 +20,10 @@ var user = {};
 //array of users
 var listOfUsers = [];
 
+//this is a variable store which field is exist
+var whichField;
+
+
 // stored users
 var currentUsers = JSON.parse(localStorage.getItem('usersList'));
 
@@ -97,14 +101,45 @@ function validatePassword() {
 
 }
 
+function checkUserSignUp() {
+    var state = false;
 
+    listOfUsers.forEach((elem) => {
+        if (emailInput.value == elem.email) {
+            state = true;
+            whichField = 'email'
+        } else if (usernameInput.value == elem.username) {
+            state = true;
+            whichField = 'username'
+        }
+
+    })
+
+    return state
+}
+
+function showErrorMessage(state, message) {
+    if (state) {
+        errorMessage.style.display = 'block'
+        errorMessage.innerHTML = message
+    } else {
+        errorMessage.style.display = 'none'
+        errorMessage.innerHTML = ``
+    }
+}
 
 function validateUserData() {
     if (!validateUsername() | !validateEmailAddress() | !validatePassword()) {
         errorMessage.classList.replace('d-none', 'd-block');
     } else {
         if (checkUserSignUp()) {
-            showErrorMessage(true, 'user already exist')
+            if (whichField != '') {
+                if (whichField == 'email')
+                    showErrorMessage(true , 'This email is already exist')
+                else if (whichField == 'username')
+                showErrorMessage(true , 'This username is already exist')
+
+            }
         } else {
             showErrorMessage(false, '')
             uploadUserData()
@@ -138,25 +173,9 @@ function clearInputsFeilds() {
     passwordInput.value = ''
 }
 
-function checkUserSignUp() {
-    var state = false;
-    listOfUsers.forEach((elem) => {
-        if (emailInput.value == elem.email | usernameInput.value == elem.username)
-            state = true;
-    })
 
-    return state
-}
 
-function showErrorMessage(state, message) {
-    if (state) {
-        errorMessage.style.display = 'block'
-        errorMessage.innerHTML = message
-    } else {
-        errorMessage.style.display = 'none'
-        errorMessage.innerHTML = ``
-    }
-}
+
 
 /* end sign up part */
 
